@@ -1,6 +1,6 @@
 name: GiteeSync
 
-on: page_build
+on: push
 
 jobs:
   build:
