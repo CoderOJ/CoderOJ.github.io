@@ -1,0 +1,186 @@
+ 
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/art.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+  <script src="/js/crypto-js.min.js"></script>
+</head>
+
+<body>
+  <script>
+    window.onload = function() {
+      hljs.configure({ tabReplace: '  ' });
+      drawSaying();
+    }
+  </script>
+
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-title">
+  <p style="font-weight: bold; font-size: 20px;"> 
+
+Jacder's blog
+
+  </p>
+  <div class="saying" id="saying"> </div>
+</div>
+<div class="sidebar-body">
+
+  <div class="sidebar-content">
+    <ul class = "sidebar-menu">
+      <a href="/">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-home">
+          Home
+        </li>
+      </a>
+      <a href="/articles">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-articles"
+            style="background: #e5e5e5">
+          Articles
+        </li>
+      </a>
+      <a href="/tags">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-tags">
+          Tags
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <div class="sidebar-about">
+    <div style="text-align: center; font-size: 16px;"> About me </div>
+    <HR align="center">
+    <div class="avatar-rotate" style="margin: 2 auto; width: min-content">
+      <img class="avatar" alt="Jacder" src="/images/avatar.png">
+    </div>
+    <ul class="sidebar-links">
+
+<li class="sidebar-links-item">
+    <a href="https://github.com/coderoj" class="friend-link"> 
+      Github 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://gitee.com/coderoj" class="friend-link"> 
+      Gitee 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://codeforces.com/profile/yz6205" class="friend-link"> 
+      CodeForces 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="mailto:coderoj@outlook.com" class="friend-link"> 
+      Email 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://user.qzone.qq.com/2602904088" class="friend-link"> 
+      QQ 
+    </a>
+  </li>
+
+    </ul>
+  </div>
+
+  <ul class="sidebar-links">
+    <div style="text-align: center; font-size: 16px;"> links </div>
+    <HR align="center">
+
+<li class="sidebar-links-item">
+    <a href="https://www.luogu.com.cn/blog/DPair2005/#" class="friend-link"> 
+      DPair
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://xyix.gitee.io" class="friend-link"> 
+      x_Yi_x
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://oierwanhong.cc" class="friend-link"> 
+      OIerwanhong
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/huangchenyan" class="friend-link"> 
+      SevenDawns
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/Flying2018" class="friend-link"> 
+      Flying2018
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/Forever-666" class="friend-link"> 
+      Clovers
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="http://blog.leanote.com/rem_001" class="friend-link"> 
+      REM_001
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://xyf007.ml" class="friend-link"> 
+      xyf007
+    </a>
+  </li>
+
+  </ul>
+
+</div>
+
+    </div>
+
+    <div class="post" id="post">
+
+      
+
+      
+      
+      
+
+      <h2> 被加密的内容 </h2>
+
+      <form onsubmit="verify()">
+        <span> 输入密码以查看：</span>
+        <input id="password" type="password">
+        <input class="gradual-button" type="submit" value="submit">
+      </form>
+
+      <script>
+        passwdMd5 = "13d00a42f01a0d889697871c6257d07b"
+        encryptedBlog = "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"
+
+        function verify() {
+          let passwd = document.getElementById("password").value
+          if (passwd == "") {
+            alert("please enter password!")
+            return
+          }
+          if (CryptoJS.MD5(passwd).toString() !== passwdMd5) {
+            alert("password incorret")
+            return
+          }
+          let key = CryptoJS.enc.Utf8.parse(passwd)
+          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {iv: key})
+          decrypted = CryptoJS.enc.Utf8.stringify(decrypted)
+          let DOMPost = document.getElementById("post")
+          DOMPost.innerHTML = decrypted
+
+          loadMath()
+          hljs.initHighlighting()
+        }
+      </script>
+    </div>
+
+  </div>
+</body>
