@@ -154,126 +154,65 @@ Jacder's blog
 <script type="math/tex; mode=display">
 \sum_{k=0}^{n} ​f(k) x^k \binom{n}{k}</script><p>在模 $p$ 意义下的值。</p>
 <h2 id="tutorial">Tutorial</h2>
-<p>把 $f$ 展开：</p>
+<p>考虑把 $f$ 转为下降幂多项式，设 </p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{i=0}^m b_ix^{\underline i}</script><p>所求即为：</p>
+<script type="math/tex; mode=display">
+\sum_{k=0}^n \sum_{i=0}^{m} b_i k^{\underline i}x^k \binom{n}{k}</script><p>我们有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-f(k) &= \sum_{0 \leq i \leq m} a_i k^i \\
-\sum_{k=0}^{n} ​f(k)  x^k  \binom{n}{k}
-&= \sum_{k=0}^{n}\sum_{i=0}^ma_i k^i  x^k  \binom{n}{k} \\
-&= \sum_{i=0}^{m}a_i \sum_{k=0}^{n}k^i  x^k  \binom{n}{k}
-\end{aligned}</script><p>接下来考虑如何处理右半边的这个和式：</p>
-<p>发现其中有 $x^k \times \binom{n}{k}$，尝试牛顿二项式定理：</p>
-<script type="math/tex; mode=display">
-(1+x)^n = \sum_{k=0}^{n}\binom{n}{k} x^k</script><p>要凑出 $k^i$，首先将 $k^i$ 转成下降幂：</p>
-<script type="math/tex; mode=display">
-k^i = \sum_{j=0}^{j\leq i} \begin{Bmatrix} i\\j \end{Bmatrix}
- k^\underline{j}</script><p>然后要在牛顿二项式定理的右边产生一个 $j$ 次下降幂，可以对 $x$ 求 $k$ 次导然后再乘 $x^j$：</p>
+\binom{n}{k} k^{\underline i} &= \frac{n!}{k!(n-k)!} \frac{k!}{(k-i)!}  \\
+&= \frac{(n-i)!n^{\underline i}}{(n-k)!(k-i)!} \\
+&= \binom{n-i}{k-i}n^{\underline i}
+\end{aligned}</script><p>所以：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-
-\frac{\mathrm{d}^j}{\mathrm{d}x^j} (1+x)^n &=
-\sum_{k=0}^{n} \frac{\mathrm{d}^j}{\mathrm{d}x^j} \binom{n}{k} x^k
-\\
-n^\underline{j} (1+x)^{n-j} &=
-\sum_{k=0}^n k^\underline{j} \binom{n}{k} x^{k-j}
-\\
-n^\underline{j} x^j (1+x)^{n-j} &=
-\sum_{k=0}^n k^\underline{j} \binom{n}{k} x^{k}
-
-\end{aligned}</script><p>所以我们就有：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum_{k=0}^{n} k^i x^k \binom{n}{k} &=
-\sum_{k=0}^{n}\sum_{j=0}^{i} \begin{Bmatrix} i\\j \end{Bmatrix} k^\underline{j}
-  \binom{n}{k} x ^k \\
-&= \sum_{j=0}^{i} \begin{Bmatrix} i\\j \end{Bmatrix}
-  \sum_{k=0}^{n}k^{\underline{j}} \binom{n}{k} x^k \\
-&= \sum_{j=0}^i \begin{Bmatrix} i\\j \end{Bmatrix}
-  n^\underline{j} x^j (1+x)^{n-j}
-\end{aligned}</script><p>带回原式，答案即为：</p>
-<script type="math/tex; mode=display">
-\sum_{i=0}^{m}a_i     
-  \sum_{j=0}^i \begin{Bmatrix} i\\j \end{Bmatrix}
-  n^\underline{j} x^j (1+x)^{n-j}</script><p>$O(n^2)$ 预处理第二类斯特林数，$O(n)$ 预处理 $n^\underline{j},x^j,(1+x)^{n-j}$，
-可以 $O(n^2)$ 完成计算。</p>
+\sum_{k=0}^n \sum_{i=0}^{m} b_i k^{\underline i}x^k \binom{n}{k} 
+&= \sum_{k=0}^n\sum_{i=0}^{m} \binom{n}{k} k^{\underline{i}} b_i x^k \\
+&= \sum_{k=0}^n\sum_{i=0}^{m} \binom{n-i}{k-i} n^{\underline{i}} b_i x^k \\
+&= \sum_{i=0}^{m} n^{\underline{i}} b_i \sum_{k=i}^n \binom{n-i}{k-i} x^k \\
+&= \sum_{i=0}^{m} n^{\underline{i}} b_i x^i \sum_{k=0}^{n-i} \binom{n-i}{k} x^k \\
+&= \sum_{i=0}^{m} n^{\underline{i}} b_i x^i (x+1)^{n-i} \\
+\end{aligned}</script><p>直接 $O(m)$ 计算。转下降幂直接暴力即可，总复杂度 $O(m^2)$</p>
 <h2 id="code">Code</h2>
-<pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+<pre><code class="lang-cpp">constexpr int N = 1005;
+int n, x, p, m;
+int a[N], b[N];
 
-// 见 https://gitee.com/coderoj/code/blob/master/creats/Intm.h
-#include &quot;/home/jack/code/creats/Intm.h&quot;
-
-const int N = 1005;
-typedef Intm::Intm Int;
-int n, p, m;
-Int a[N], x;
-
-// 预处理第二类斯特林数
-Int s[N][N];
-void
-initSt()
-{
-  s[0][0] = 1;
-  for (int i = 1; i &lt; N; ++i) {
-    s[i][0] = 0;
+int stir[N][N];
+void initStir() {
+  stir[0][0] = 1;
+  for (int i = 1; i &lt;= m; ++i) {
     for (int j = 1; j &lt;= i; ++j) {
-      s[i][j] = s[i - 1][j - 1] + Int(j) * s[i - 1][j];
-    }
-  }
-}
+      stir[i][j] = (stir[i - 1][j - 1] + 1ll * j * stir[i - 1][j]) % p; } } }
 
-// 预处理幂次
-Int pow_x[N], pow_xp[N];
-void
-initPow()
-{
-  pow_x[0] = 1;
-  pow_xp[0] = (x+Int(1)).pow(n-m);
-  for (int i = 1; i &lt;= m; ++i) {
-    pow_x[i] = pow_x[i - 1] * x;
-    pow_xp[i] = pow_xp[i - 1] * (x + Int(1));
-  }
-}
-
-// 预处理n的下降幂
-Int n_ds[N];
-void
-initNDs()
-{
-  n_ds[0] = 1;
-  for (int i = 1; i &lt;= m; ++i) {
-    n_ds[i] = n_ds[i - 1] * Int(n - i + 1);
-  }
-}
-
-Int
-getCoe(int i)
-{
-  Int res = 0;
-  for (int j = 0; j &lt;= i; ++j) {
-    res += s[i][j] * n_ds[j] * pow_x[j] * pow_xp[m - j];
-  }
-  return res;
-}
-
-void
-solve()
-{
-  n = read();
-  x = read();
-  p = read();
-  m = read();
-  for (int i = 0; i &lt;= m; ++i)
-    a[i] = read();
-  Int::setMod(p);
-  initSt();
-  initPow();
-  initNDs();
-  Int ans = 0;
+void pow_to_down() {
   for (int i = 0; i &lt;= m; ++i) {
-    ans += a[i] * getCoe(i);
-  }
-  printf(&quot;%d\n&quot;, static_cast&lt;int&gt;(ans));
-}
+    for (int j = 0; j &lt;= i; ++j) {
+      b[j] = (b[j] + 1ll * stir[i][j] * a[i]) % p; } } }
+
+int power(int a, int b) {
+  int r = 1;
+  for (; b; b &gt;&gt;= 1) {
+    if (b &amp; 1) {
+      r = 1ll * r * a % p; }
+    a = 1ll * a * a % p; }
+  return r; }
+
+void preInit() { } void init() {
+  n = sc.n(); x = sc.n(); p = sc.n(); m = sc.n();
+  for (int i : range(m + 1)) {
+    a[i] = sc.n(); } }
+void solve() {
+  initStir();
+  pow_to_down();
+  logArray(b, b + n + 1);
+  int n_down = 1, x_pow = 1;
+  int ans = 0;
+  for (int i = 0; i &lt;= m; ++i) {
+    ans = (ans + 1ll * n_down * b[i] % p * x_pow % p * power(x + 1, n - i)) % p;
+    n_down = 1ll * n_down * (n - i) % p; x_pow = 1ll * x_pow * x % p; }
+  printf(&quot;%d\n&quot;, ans); }
 </code></pre>
 
       <br>
