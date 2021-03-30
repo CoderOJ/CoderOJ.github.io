@@ -148,28 +148,59 @@ Jacder's blog
 
     <div class="post" id="post">
 
-      <h1 id="over-all">Over all</h1>
-<ul>
-<li>in a $n*m$ matrix</li>
-<li>creat a two-part graph with n+m nodes (sometimes an extra S and an extras T)</li>
-<li>if $matrix[i][j] == 1$(or similar), connect verdex $i$ &amp; $n + j$</li>
-</ul>
-<!--more-->
-<h1 id="mainly-used-in">Mainly used in</h1>
-<ul>
-<li>of course a matrix</li>
-<li>each unit has two states (at least O(1) states)</li>
-<li>(maybe) need to do something with those special unit</li>
-</ul>
-<h1 id="examples">Examples</h1>
-<ul>
-<li><p><a href="https://dev.xjoi.net/contest/1248/problem/1">XJ1248A</a></p>
-</li>
-<li><p>CF? (problem E2 in my first div1 contest)</p>
-</li>
-<li><p>especially in netFlow</p>
-</li>
-</ul>
+      <h1 id="-%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2016-%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E6%B1%82%E5%92%8C">[清华集训2016] 如何优雅地求和</h1>
+<h2 id="description">Description</h2>
+<p>给定 $n,x$ 和 $m$ 次多项式 $f$ （给出 $0 \cdots m$ 的点值） ，求</p>
+<script type="math/tex; mode=display">
+\sum_{k=0}^n f(k) \binom{n}{k} x^k (1-x)^{n-k}</script><h2 id="tutorial">Tutorial</h2>
+<p>设 $f$ 转化为下降幂多项式时的系数为 $b_0 \cdots b_m$</p>
+<p>使用类似于联合省选组合数问题的技巧，我们有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{k=0}^n f(k)\binom{n}{k} x^k (1-x)^{n-k}
+&= \sum_{k=0}^n \sum_{i=0}^{m} b_i k^{\underline i} \binom{n}{k} x^k (1-x) ^{n-k} \\
+&= \sum_{k=0}^n \sum_{i=0}^{m} b_i n^{\underline i} \binom{n-i}{k-i} x^k (1-x) ^{n-k} \\
+&= \sum_{i=0}^{m} b_i n^{\underline i} \sum_{k=i}^n \binom{n-i}{k-i} x^k (1-x) ^{n-k} \\
+&= \sum_{i=0}^{m} b_i n^{\underline i} x^i \sum_{k=0}^{n-i} \binom{n-i}{k} x^{k} (1-x) ^{n-i-k} \\
+&= \sum_{i=0}^{m} b_i x^i n^{\underline i} &(1)
+\end{aligned}</script><p>接下来考虑如何求 $b_i$，当然可以先插值再转为下降幂，但出题人给点值<del>显然</del>不是用来恶心人的，考虑直接通过点值求 $b_i$</p>
+<p>因为</p>
+<script type="math/tex; mode=display">
+x^n = \sum_k \begin{Bmatrix} n\\k \end{Bmatrix} x^{\underline k}</script><p>设 $f$ 的普通幂系数为 $a_0 \cdots a_m$，我们有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+b_i &= \sum_j \begin{Bmatrix} j\\i \end{Bmatrix} a_j &(2)
+\end{aligned}</script><p>然后考虑一个恒等式</p>
+<script type="math/tex; mode=display">
+\sum_{m} \binom{k}{m} \begin{Bmatrix} n\\m \end{Bmatrix} m! = k^n</script><p>这很容易用组合意义证明</p>
+<p>二项式反演得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+m! \begin{Bmatrix} n\\m \end{Bmatrix} &= \sum_k \binom{m}{k} k^n(-1)^{m-k} \\
+   \begin{Bmatrix} n\\m \end{Bmatrix} &= \frac1{m!}\sum_k \binom{m}{k} k^n(-1)^{m-k} \\ 
+\end{aligned}</script><p><del>我怎么把第二类斯特林数·行的式子推了一遍</del></p>
+<p>带入 $(2)$，得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+b_i &= \sum_j \begin{Bmatrix} j\\i \end{Bmatrix} a_j \\
+&= \frac1{i!} \sum_j \sum_k \binom{i}{k}k^j(-1)^{i-k} a_j \\
+&= \frac1{i!} \sum_k \binom{i}{k}(-1)^{i-k} \sum_j a_j k^j \\
+&= \frac1{i!} \sum_k \binom{i}{k}(-1)^{i-k} f(k) \\
+&= \sum_k \frac{f(k)}{k!} \frac{(-1)^{i-k}}{(i-k)!} \\
+\end{aligned}</script><p>这十分的卷积，显然可以 $O(m \log m)$ 计算</p>
+<p>然后把算出来的$b_i$ 带回 $(1)$ 就好了</p>
+<h2 id="upd0">UPD0</h2>
+<p>突然发现我好傻逼，转下降幂完全不用那么烦</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(k) &= \sum_i b_ii! \times \frac{k^{\underline i}}{i!} \\
+&= \sum_i b_i i! \binom{k}{i}
+\end{aligned}</script><p>直接二项式反演</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+b_k k! &= \sum_i (-1)^{k-i} \binom{k}{i} f(i) \\
+b_k &= \sum_i \frac{(-1)^{k-i}}{(k-i)!} \frac{f(i)}{i!}
+\end{aligned}</script><p>我之前在干什么。。。</p>
 
       <br>
 <HR class="hr-line">
