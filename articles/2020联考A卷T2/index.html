@@ -166,13 +166,13 @@ f(k) &= \sum_{0 \leq i \leq m} a_i k^i \\
 <script type="math/tex; mode=display">
 (1+x)^n = \sum_{k=0}^{n}\binom{n}{k} x^k</script><p>要凑出 $k^i$，首先将 $k^i$ 转成下降幂：</p>
 <script type="math/tex; mode=display">
-k^i = \sum_{j=0}^{j\leq i} \begin{Bmatrix} {i\\j} \end{Bmatrix}
+k^i = \sum_{j=0}^{j\leq i} \begin{Bmatrix} i\\j \end{Bmatrix}
  k^\underline{j}</script><p>然后要在牛顿二项式定理的右边产生一个 $j$ 次下降幂，可以对 $x$ 求 $k$ 次导然后再乘 $x^j$：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 
-\frac{\mathrm{d}^j}{\mathrm{d}x} (1+x)^n &=
-\sum_{k=0}^{n} \frac{\mathrm{d}^j}{\mathrm{d}x} \binom{n}{k} x^k
+\frac{\mathrm{d}^j}{\mathrm{d}x^j} (1+x)^n &=
+\sum_{k=0}^{n} \frac{\mathrm{d}^j}{\mathrm{d}x^j} \binom{n}{k} x^k
 \\
 n^\underline{j} (1+x)^{n-j} &=
 \sum_{k=0}^n k^\underline{j} \binom{n}{k} x^{k-j}
