@@ -1,0 +1,194 @@
+ 
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/art.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+  <script src="/js/crypto-js.min.js"></script>
+</head>
+
+<body>
+  <script>
+    window.onload = function() {
+      hljs.configure({ tabReplace: '  ' });
+      drawSaying();
+    }
+  </script>
+
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-title">
+  <p style="font-weight: bold; font-size: 20px;"> 
+
+Jacder's blog
+
+  </p>
+  <div class="saying" id="saying"> </div>
+</div>
+<div class="sidebar-body">
+
+  <div class="sidebar-content">
+    <ul class = "sidebar-menu">
+      <a href="/">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-home">
+          Home
+        </li>
+      </a>
+      <a href="/articles">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-articles"
+            style="background: #e5e5e5">
+          Articles
+        </li>
+      </a>
+      <a href="/tags">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-tags">
+          Tags
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <div class="sidebar-about">
+    <div style="text-align: center; font-size: 16px;"> About me </div>
+    <HR align="center">
+    <div class="avatar-rotate" style="margin: 2 auto; width: min-content">
+      <img class="avatar" alt="Jacder" src="/images/avatar.png">
+    </div>
+    <ul class="sidebar-links">
+
+<li class="sidebar-links-item">
+    <a href="https://github.com/coderoj" class="friend-link"> 
+      Github 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://gitee.com/coderoj" class="friend-link"> 
+      Gitee 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://luogu.com.cn/user/43368" class="friend-link"> 
+      Luogu 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://codeforces.com/profile/yz6205" class="friend-link"> 
+      CodeForces 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="mailto:coderoj@outlook.com" class="friend-link"> 
+      Email 
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://user.qzone.qq.com/2602904088" class="friend-link"> 
+      QQ 
+    </a>
+  </li>
+
+    </ul>
+  </div>
+
+  <ul class="sidebar-links">
+    <div style="text-align: center; font-size: 16px;"> links </div>
+    <HR align="center">
+
+<li class="sidebar-links-item">
+    <a href="https://www.luogu.com.cn/blog/DPair2005/#" class="friend-link"> 
+      DPair
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://xyix.gitee.io" class="friend-link"> 
+      x_Yi_x
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://oierwanhong.cc" class="friend-link"> 
+      OIerwanhong
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/huangchenyan" class="friend-link"> 
+      SevenDawns
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/Flying2018" class="friend-link"> 
+      Flying2018
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://www.cnblogs.com/Forever-666" class="friend-link"> 
+      Clovers
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="http://blog.leanote.com/rem_001" class="friend-link"> 
+      REM_001
+    </a>
+  </li>
+<li class="sidebar-links-item">
+    <a href="https://xyf007.ml" class="friend-link"> 
+      xyf007
+    </a>
+  </li>
+
+  </ul>
+
+</div>
+
+    </div>
+
+    <div class="post" id="post">
+
+      
+
+      
+
+      
+      
+      
+
+      <h2> 被加密的内容 </h2>
+
+      <form onsubmit="verify()">
+        <span> 输入密码以查看：</span>
+        <input id="password" type="password">
+        <input class="gradual-button" type="submit" value="submit">
+      </form>
+
+      <script>
+        passwdMd5 = "c3d8470009d54e9ccc6b1966eb7ed219"
+        encryptedBlog = "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"
+
+        function verify() {
+          let passwd = document.getElementById("password").value
+          passwd = CryptoJS.MD5(passwd).toString().substr(0,8)
+          if (passwd == "") {
+            alert("please enter password!")
+            return
+          }
+          if (CryptoJS.MD5(passwd).toString() !== passwdMd5) {
+            alert("password incorret")
+            return
+          }
+          let key = CryptoJS.enc.Utf8.parse(passwd)
+          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {iv: key})
+          decrypted = CryptoJS.enc.Utf8.stringify(decrypted)
+          let DOMPost = document.getElementById("post")
+          DOMPost.innerHTML = decrypted
+
+          loadMath()
+          hljs.initHighlighting()
+        }
+      </script>
+    </div>
+
+  </div>
+</body>
