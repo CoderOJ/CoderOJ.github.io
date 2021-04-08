@@ -29,3 +29,9 @@
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
 }
+
+.post blockquote {
+  border-left: 5px #cdd solid;
+  padding: 0 20px;
+  margin: auto;
+}
