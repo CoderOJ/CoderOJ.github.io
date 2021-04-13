@@ -166,22 +166,26 @@ Jacder's blog
       </form>
 
       <script>
-        passwdMd5 = "13354785bca85157fb5293ada21b24e3"
-        encryptedBlog = "VVQ3jpJfRkal4rnlGftYKEiw9b2X9BAmEvna/K+2URZTwelv7bex100K+A6KWXqwNnTonI39wBDzd+HXn+VfR2s23fIkRCZz6uQ2+CkRKqgGWhBAaeXtHbYpSoiouSqNDBS8E5KctP0sOqwSH7kmrP97j+Mq10xuskYpFWChUJPj2Q1wygBC0bXvFoyT6n72pXAq+bUAQZ5L7KXvJvPvMfkqkdA79k0UbuNib6n/SAmSZmhRI1nVTZi+K2CLPK4rtuvNsKCCtGYW1dkK4PU13GpkNlMQYharj3TH5+gomgSGpHZwNQrJ/6DMxDJ/jd60570Y7GNJpXKK81m0BD5Ro3HZtzmA73U3ZnI777O2fnnyMgX0ygPUF86G/KuPnQBqb/F622oZMXxwKYn8qOW21FU1Qq6JXe0grpyH1jecSvU8PTwWrXO+FdEPHQc3+t9YvW8AXxLqq2ARh2fx+6DkCwreSDVAwLrt3RiqzNg3Xin1SBopGv4EHAKO/apRBHq0ufKoXWEtUhZh82doIrf25VkF+noAx6+Lc8rH6rj8eZwfyx0GLVSBvd6hmjrWskJHs89ghARrClsmBt1dR+GGLQ=="
+        passwdMd5 = "e697cbd1c1341de1dc0e721ce9ea4faf"
+        encryptedBlog = "YMWIWfDflP93MFCrxAoNkm0ERqkq+0pA22K7EJ5YS9CdXkjYlAPJI8jtKVxVxITRltEZkKnKyQVhWM9EJwIduy4VbrKa3W8Fe8HoZQFGzT58TMcS0tMXfy0MuBbLdu/FQ6osGjTVRTPwcyi2JXgag51gzAodYpmgb732lMNZ4V0d/Pa9xFNemsg+9nMP9mSBkKR8kmxIs3pL9JpHe4W5puslucvZHK+KF3Wfr0i3x/2SNqvtZt1kvqyPOzGTN8sfnrr7oDA4dJ5FlGwilVUPK2/2Iit5Q3wn/NjKnTPF8KKdAJaaSSCAAu1Z8jFJ2yPpLIK6qkkYGpKQfuYla9KkWPBK268YH47HZT1qffymw/bW0NN+QpRsJjw69br1tOQjbb/fB+GMKpLehYf0flgkb87QOkspaZJO9X5kNqaahaHy/ZT3Jax7F1HGc3ZxFoafRxjQIlTWAJyQYRItpDT5yC3bVrWKXnr5BtFNkz+gt3+9TxNK2ASoaQSLk7cF+IPSniVpIscYXgFrJsBMY13JudimT8/83arrh24ksAdOM/whZ5R0BwpuZ3Ah0YvZdf2fSmqi+KOFeMX2PjrNT5N1Iw=="
 
         function verify() {
           let passwd = document.getElementById("password").value
-          passwd = CryptoJS.MD5(passwd).toString().substr(0,8)
           if (passwd == "") {
             alert("please enter password!")
             return
           }
+          passwd = CryptoJS.MD5(passwd).toString().substr(0,16)
           if (CryptoJS.MD5(passwd).toString() !== passwdMd5) {
             alert("password incorret")
             return
           }
           let key = CryptoJS.enc.Utf8.parse(passwd)
-          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {iv: key})
+          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {
+            iv: key,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+          })
           decrypted = CryptoJS.enc.Utf8.stringify(decrypted)
           let DOMPost = document.getElementById("post")
           DOMPost.innerHTML = decrypted
