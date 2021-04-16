@@ -189,8 +189,8 @@ Jacder's blog
 <h4 id="-pushup"><code>pushUp</code></h4>
 <pre><code class="lang-cpp">void pushUp() { 
     at = vt;
-    if (s[0] != NULL) at ^= s[0]-&gt;at;
-    if (s[1] != NULL) at ^= s[1]-&gt;at;
+    if (s[0] != NULL) at += s[0]-&gt;at;
+    if (s[1] != NULL) at += s[1]-&gt;at;
 }
 </code></pre>
 <p>Just follow the definition to maintain <code>at</code></p>
@@ -234,7 +234,7 @@ Jacder's blog
 <p>So we need to update <code>v</code>, as follow:</p>
 <pre><code class="lang-cpp">void link(Node* u, Node* v) {
     u-&gt;makeRoo(); v-&gt;makeRoot();
-    p[u].f = v; v-&gt;vt += p[u]-&gt;at; v-&gt;pushUp();
+  p[u].f = v; v-&gt;vt += u-&gt;at; v-&gt;pushUp();
 }
 </code></pre>
 <p>Great, everything is done.</p>
