@@ -6,18 +6,14 @@
   <script src="/js/element.js"></script>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
   <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
-  <title>
-      Conclusion on Catalan number - Jacder's blog
-  </title>
+  <script src="/js/crypto-js.min.js"></script>
 </head>
 
 <body>
   <script>
     window.onload = function() {
-      loadMath();
-      drawSaying();
       hljs.configure({ tabReplace: '  ' });
-      hljs.initHighlighting()
+      drawSaying();
     }
   </script>
 
@@ -151,70 +147,53 @@ Jacder's blog
 
     <div class="post" id="post">
 
-      <h1 id="study-note-on-catalan-number">Study note on Catalan Number</h1>
-<!--more-->
-<script type="math/tex; mode=display">
-\begin{aligned}
-c_0 &= 1 \\
-c_n &= \sum_{k=0}^{n-1} c_kc_{n-k-1} &(x \geq 1)
-\end{aligned}</script><p>Define</p>
-<script type="math/tex; mode=display">
-C(x) = \sum_{k=0}^\infty c_k x^k</script><p>Then</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-C^2(x) &= \sum_{k=0}^{\infty} \sum_{j=0}^{k}c_jc_{k-j}x^k \\
-&= \sum_{k=0}^{\infty}c_{k+1}x^k \\
-xC^2(x)&= -1 + C(x)
-\end{aligned}</script><p>Therefore</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-xC^2-C+1 &= 0 \\
-C &= \frac{1\pm\sqrt{1-4x}}{2x} \\
-\end{aligned} \\</script><script type="math/tex; mode=display">
-\begin{aligned}
-&\because [x^0]C = 0 \\
-&\therefore C = \frac{1-\sqrt{1-4x}}{2x}
-\end{aligned}</script><p>Then consider how to solve $\sqrt{1-4x}$</p>
-<p>Because</p>
-<script type="math/tex; mode=display">
-(1+x)^\alpha = \sum_{k=0}^{\infty}\binom{\alpha}{k}x^k</script><p>We have</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-(1-4x)^{\frac{1}{2}}
-&= \sum_{k=0}^{\infty}\binom{\frac{1}{2}}{k}(-4x)^k \\
-&= \sum_{k=0}^{\infty}\frac{(\frac{1}{2})^{\underline{k}}}{k!}(-4x)^k \\
-&= \sum_{k=0}^{\infty}\frac{(-\frac{1}{2})^{\overline{k}}}{k!}(4x)^k \\
-&= \sum_{k=0}^{\infty}\frac{(k-\frac{3}{2})^{\underline{k}}}{k!}(4x)^k \\
-&= -\frac{1}{2}\sum_{k=0}^{\infty}\frac{(k-\frac{3}{2})^{\underline{k-1}}}{k!}(4x)^k \\
-&= -\sum_{k=0}^{\infty}\frac{(2k-3)!!}{k!}(2x)^k \\
-&= -{2}\sum_{k=0}^{\infty}\frac{(2k-3)!!}{k!} \frac{(2k-2)!!}{(k-1)!} x^k \\
-&= -{2}\sum_{k=0}^{\infty}\frac{(2k-2)!}{k!(k-1)!} x^k \\
-&= -{2}\sum_{k=0}^{\infty}\frac{1}{k}\binom{2k-2}{k-1} x^k \\
-\end{aligned}</script><p>Here we need to define $x^\underline{-1}$ as $\frac{1}{x}$, otherwise there are some edge cases.</p>
-<p>Pay attention to where $2$ and $\frac{1}{2}$ appear and disappear.</p>
-<p>Therefore</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-C(x) 
-&= \frac{1 + 2\sum_{k=0}^{\infty}\frac{1}{k}\binom{2k-2}{k-1} x^k}{2x} \\
-&= \sum_{k=1}^{\infty}\frac{1}{k}\binom{2k-2}{k-1} x^{k-1} \\ 
-&= \sum_{k=0}^{\infty}\frac{1}{k+1}\binom{2k}{k} x^{k} \\ 
-\end{aligned}</script><p>As is obviously we have</p>
-<script type="math/tex; mode=display">
-c_n = \frac{1}{n+1}\binom{2n}{n}</script>
-      <br>
-<HR class="hr-line">
+      <title> 被加密的文章 - Jacder's blog </title>
 
-<div style="font-size: 12px; display: flex;">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
-  </a>
-  <div style="margin-left: 10px;">
-    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-  </div>
-</div>
+      
 
+      
 
+      
+      
+      
+
+      <h2> 被加密的内容 </h2>
+
+      <form onsubmit="verify()">
+        <span> 输入密码以查看：</span>
+        <input class="underline-input" id="password" type="password">
+        <input class="gradual-button" type="submit" value="submit">
+      </form>
+
+      <script>
+        passwdMd5 = "9b0c1ac0c8c2813e2b2a004177f4256b"
+        encryptedBlog = "Tq4M5aFS8lc34LLo7mbNd0L5R/nw23GhgQ1wKAcNSsltyXd2sXZCNexWDBHz88nAnwMzVA2SpGG6yCv3/HxhgYKBeJtQdlKDaQaJWaI11DK2EmXzNWqEdtOjUpK3UkP0Slg0atYftcUeh3PBX5ws/ELsF2YkvOYCmcW7ex8LA3DIfYmZuFthhUBfuqOge1SG8RKplqFvV0gslh789HOJXJXLjvpOneYFfrpxKe7dZ/zhMvFN431HhPC98770WFc5Q7KtMc+p5woxm4+brVklu/OtK5qDF6ZRvn1IF4+2xYGFaUPwG8Ifca4ld0jPU0Vil9oIcz6f0+VLQCsA6Rw0aQ+qUQZvBaFhaENsJTMdIv27p2diqpi99fCIcbYdxAJzkHsqqcmvvyjshQ7G3RtmFsjgRI5OzAWgxgzseG0qdfeU+WaX0rvTIXTJrxW40flxm+DDRW2TfCY+m3x/HLH9HAVPURUiMzHP1DdQG3PqCBu6suGVVz+ISwUsw1Z+ZQ3ReQ1MN35v1EaQnfF6n8XNfYtPQeyVtRqiFFNClFZWH2pwf8BYGyOQvouBIK2mVzXdETrOmVYbfjekzn+VcJ3qkjEgRz05p0leoh21nndE8qfR7rNGcz72hE695waUr34YSyeVLh7cGnBd/IpgfAPBfXI3PlbGjtLX//JL+fvTf124PDu/tK32LGzfjA2MHrH7evqKfj2mcqHaD3sLmGjxYl5eCAIhNml+6PhE6BifEUmb6mm8Cqwx8zAnN0EDTgIftKeBaFOIxOMf/jYhpM+3HmKhxf2RvDFSsQ1zucjp1fYaxbW1olkyXdVE+iuoMK0O9rORCu/AsgA+3z1r97rKBVXTo6MBdk1Tp0s0SyjcM77YAZzxiEhha5WoIVI3EaM7d3PPQqnbYu4Sd+UaVjS6zeNPQg4XwKYulRzb0//fTl4D9iMVB8/1yAa3SkHZ0/MLJc1vbP0+EBAp4SzkxAmhTJZmU9YZcsLN8aCc2YY+EubbWIUob7C5W8nwULHlWOZ6BQ8sZpopUyl2fYHonqqIRxwCIjQ51xzmLKOhIOx215gNNDciArLOH6wx7ZlFwmXX57GsdUNXhXD2yjmsFnNDgW0xiM1MXe504dBa5Yrv19Z/n0uiaojGPeknf33BSfNd8gOnN7WqRVZBXLXC5RICRyR7a2F/iabV5sl1jw1AHwybnAUopP9noAuEjUU7/32y3sJ1NcpnpnT+rFv/BZvoMkI0jVD8WlavNQnsuAO3oUqqCZn/zuN4iJQv+yP3VQ+xo4fu9EYlWKpGre7dX663fddJQqZyCaQoxab8oLJArN5hTaYsIJCjqTImf4dd/UC32TYp8NVoLfJCryVM0T6f0ADJmRmoi83RsErZZpOdkKa1SlytANJXY3vMn9XnCddj7z9drD5mmgnsJxrhcHmrQbuY0pey+JILQnBe0a0v8ezw7SX4FCieJet5+Xe/RaGOvdw3iL8wml/4jtDm3w8O+G/JSTyipUOqSDpadE27VHifsdElaNk8Dxg+E9l+JfGGB96qJeeKguZOKvtlkrpAhFIl3hgwiqri/z1g4MtCJP7XK7P9Ba1uS0RpU15WI2kdUFOs9I2odQ0Ic6Z5zuuoArxnq4u9LUUAdJ0XzapadIDl/m6HMI010ZKh37I/Cdnmm6ySHBSxj557IfueP+Gq9xQryS+BceA+sV3aUawC7KDeTRpEfU1YYghKrY2VwD8hi5QXQFxaKEy2WF4YIU2x0u1xYWiszNaF37d4IDxtvZByWgQOspLjIJdUrwng623ZPUVVjpO65bEOWigZsb73Eg=="
+
+        function verify() {
+          let passwd = document.getElementById("password").value
+          if (passwd == "") {
+            alert("please enter password!")
+            return
+          }
+          passwd = CryptoJS.MD5(passwd).toString().substr(0,16)
+          if (CryptoJS.MD5(passwd).toString() !== passwdMd5) {
+            alert("password incorret")
+            return
+          }
+          let key = CryptoJS.enc.Utf8.parse(passwd)
+          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {
+            iv: key,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+          })
+          decrypted = CryptoJS.enc.Utf8.stringify(decrypted)
+          let DOMPost = document.getElementById("post")
+          DOMPost.innerHTML = decrypted
+
+          loadMath()
+          hljs.initHighlighting()
+        }
+      </script>
     </div>
 
   </div>
