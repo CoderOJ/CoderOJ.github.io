@@ -1,5 +1,5 @@
 .post h1, .post h2 {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
   padding-top: 10px;
 }
 
@@ -34,4 +34,28 @@
   border-left: 5px #cdd solid;
   padding: 0 20px;
   margin: auto;
+}
+
+.post code {
+  font-size: 14px;
+}
+
+.post h1 {
+  font-size: 40px !important;
+}
+
+.post h2 {
+  font-size: 32px !important;
+}
+
+.post h3 {
+  font-size: 28px !important;
+}
+
+.post h4 {
+  font-size: 24px !important;
+}
+
+.post h5 {
+  font-size: 20px !important;
 }

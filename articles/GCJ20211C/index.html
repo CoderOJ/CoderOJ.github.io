@@ -24,7 +24,7 @@
   <div class="content">
     <div class="sidebar" id="sidebar">
       <div class="sidebar-title">
-  <p style="font-weight: bold; font-size: 20px;"> 
+  <p style="font-weight: bold; font-size: 24px;"> 
 
 Jacder's blog
 
@@ -152,19 +152,21 @@ Jacder's blog
     <div class="post" id="post">
 
       <h1 id="code-jam-2021-round-1c">Code Jam 2021 Round 1C</h1>
-<p>今年的 Code Jam 时间是真的阴间，1A 和省选冲，1B 在半夜，1C 在尴尬的 5 点，2 也打不了<del>我还要 google T-Shirt</del></p>
-<p>然后没吃晚饭就开打了，靠着下午吃的蛋糕撑到了<del>夜宵</del></p>
-<p>Code Jam 真越来越卷了，Qualification Round 两千多个 AK，我最后一个 MO 题没写直接 rk 3k+</p>
-<p>CF 上有个曾经 Master 的老哥去年 1A rank 600 今年直接进不了。</p>
+<p>今年 Code Jam 时间是真的阴间，1A 和省选冲，1B 在半夜，1C 在尴尬的 5 点，2 也因为一些奇怪的原因打不了<del>我还要 T-Shirt</del></p>
+<p>说起来这几年真越来越卷了，Qualification Round 两千多个 AK，我最后一个 MO 题没写直接 rk 3k+， <del>19 年只有不到 500 个 AK</del>。
+CF 上有个曾经 Master 的老哥去年 1A rank 600 今年直接进不了。</p>
+<p>想着 R1 都不过太逊了，于是决定还是打一下 R1C。
+没吃晚饭就开打了，<del>靠着下午吃的蛋糕撑到了夜宵</del></p>
 <p>题目还是一如既往的偏思维，区分度仍然很迷(?)</p>
-<p>最后 52 秒极限过 C，直接从 rk 1700+ 到 rk 102。</p>
+<p>最后 52 秒极限过 C，直接从 rk 1700+ 到 rk 102 就很爽</p>
+<p>还有谷歌怎么这么咕咕咕的啊，按 1A 和 1B 的情况来看代码查重要跑个四五天才能出终榜。</p>
 <h1 id="a-closest-picks">A. Closest Picks</h1>
 <h2 id="description">Description</h2>
 <p>懒得翻了，直接原题面扔上来：</p>
 <blockquote>
-<p> You are entering a raffle for a lifetime supply of pancakes. <strong>N</strong> tickets have already been sold. Each ticket contains a single integer between 1 and <strong>K</strong>, inclusive. Different tickets are allowed to contain the same integer. You know exactly which numbers are on all of the tickets already sold and would like to maximize your odds of winning by purchasing two tickets (possibly with the same integer on them). You are allowed to choose which integers between 1 and <strong>K</strong>, inclusive, are on the two tickets.</p>
-<p> You know you are the last customer, so after you purchase your tickets, no more tickets will be purchased. Then, an integer <em>c</em> between 1 and <strong>K</strong>, inclusive, is chosen uniformly at random. If one of your tickets is strictly closer to <em>c</em> than all other tickets or if both of your tickets are the same distance to <em>c</em> and strictly closer than all other tickets, then you win the raffle. Otherwise, you do not win the raffle.</p>
-<p> Given the integers on the <strong>N</strong> tickets purchased so far, what is the maximum probability of winning the raffle you can achieve by choosing the integers on your two tickets optimally?</p>
+<p> You are entering a raffle for a lifetime supply of pancakes. $N$ tickets have already been sold. Each ticket contains a single integer between 1 and $K$, inclusive. Different tickets are allowed to contain the same integer. You know exactly which numbers are on all of the tickets already sold and would like to maximize your odds of winning by purchasing two tickets (possibly with the same integer on them). You are allowed to choose which integers between 1 and $K$, inclusive, are on the two tickets.</p>
+<p> You know you are the last customer, so after you purchase your tickets, no more tickets will be purchased. Then, an integer <em>c</em> between 1 and $K$, inclusive, is chosen uniformly at random. If one of your tickets is strictly closer to <em>c</em> than all other tickets or if both of your tickets are the same distance to <em>c</em> and strictly closer than all other tickets, then you win the raffle. Otherwise, you do not win the raffle.</p>
+<p> Given the integers on the $N$ tickets purchased so far, what is the maximum probability of winning the raffle you can achieve by choosing the integers on your two tickets optimally?</p>
 <p> $N \leq 30,K \leq 10^9$</p>
 </blockquote>
 <h2 id="tutorial">Tutorial</h2>

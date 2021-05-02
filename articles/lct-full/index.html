@@ -24,7 +24,7 @@
   <div class="content">
     <div class="sidebar" id="sidebar">
       <div class="sidebar-title">
-  <p style="font-weight: bold; font-size: 20px;"> 
+  <p style="font-weight: bold; font-size: 24px;"> 
 
 Jacder's blog
 
@@ -246,7 +246,7 @@ void link(LCTNode *u, LCTNode *v);
 void split(LCTNode *u, LCTNode *v);
 void split(LCTNode *u, LCTNode *v);
 </code></pre>
-<h5 id="-access"><code>access</code></h5>
+<h5 id="access">access</h5>
 <p><code>access</code> 的功能是将该结点到根上的所有边变为实边，并将这个点的所有儿子变为虚儿子 。</p>
 <p>假设我们有这样一棵树，实线为实边，虚线为虚边。</p>
 <p><img src="./images/lct1.png" alt=""></p>
@@ -289,7 +289,7 @@ void split(LCTNode *u, LCTNode *v);
 <li>更新当前点的信息</li>
 <li>把当前点换成当前点的父亲，继续操作</li>
 </ol>
-<h5 id="-make-root"><code>make_root</code></h5>
+<h5 id="make-root">make_root</h5>
 <p>我们在需要维护路径信息的时候，会出现路径深度无法严格递增的情况。根据辅助树的的性质，这种路径是不能出现在一棵 Splay 中的。因此，我们需要一种操作，将一个点变成原树的根。</p>
 <p>考虑一次换根做了什么，假设原先根为 $R$，当前结点为 $U$，我们需要将 $R \to U$ 的路径翻转，变为 $U \to R$。因此我们只需要将 $U$ 结点 <code>access</code>，然后将这棵 Splay 翻转。</p>
 <p>代码实现：</p>
@@ -299,7 +299,7 @@ void split(LCTNode *u, LCTNode *v);
   reverse();
 }
 </code></pre>
-<h5 id="-find-root"><code>find_root</code></h5>
+<h5 id="find-root">find_root</h5>
 <p><code>find_root</code> 返回一个森林的根，常用于判断两个点是否属于同一联通块。</p>
 <p>将该点 <code>access</code>、<code>splay</code> 后，该联通块的根即为 Splay 中最左侧的点，直接不断往搜索走即可。</p>
 <p>注意这里在大部分情况下不需要 <code>push_down</code>，如果为了保险起见也可以写上。</p>
@@ -318,7 +318,7 @@ void split(LCTNode *u, LCTNode *v);
   return uu;
 }
 </code></pre>
-<h5 id="-link"><code>link</code></h5>
+<h5 id="link">link</h5>
 <p><code>link</code> 操作将原树上的两个点之间加边（虚边）</p>
 <p>做法非常显然，先将一个点变为根，然后将其的父亲设为另一个结点。</p>
 <p>代码实现：</p>
@@ -327,7 +327,7 @@ void split(LCTNode *u, LCTNode *v);
   u-&gt;f = v;
 }
 </code></pre>
-<h5 id="-split"><code>split</code></h5>
+<h5 id="split">split</h5>
 <p><code>split</code> 操作将两点之间的路径提取出来，便于查询。</p>
 <p>先将其中的一个点 <code>make_root</code>，这样这条路径的深度严格递增。将另外一个点 <code>access</code> 再 <code>splay</code> ，这样这个点上的信息就是该路径的信息</p>
 <p>代码实现：</p>
@@ -337,7 +337,7 @@ void split(LCTNode *u, LCTNode *v);
   v-&gt;splay();
 }
 </code></pre>
-<h5 id="-cut"><code>cut</code></h5>
+<h5 id="cut">cut</h5>
 <p>断边操作有两种情况，保证合法和不一定保证合法。</p>
 <p>如果保证合法，那么直接将这两个点 <code>split</code> 出来，此时这两个点之间连的是实边，直接在 Splay 上切断即可。</p>
 <p>保证合法的代码实现：</p>
