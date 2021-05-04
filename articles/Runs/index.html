@@ -154,22 +154,23 @@ Jacder's blog
       <h1 id="runs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Runs 学习笔记</h1>
 <p>这个字符串菜鸡来填坑了。</p>
 <p>照着孔姥爷的博客学的所以这篇博客会和孔姥爷的那篇很像<del>一模一样</del></p>
+<p>可能有一些 MathJax 炸了但应该问题不大。</p>
 <h2 id="%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%8F%B7%E5%92%8C%E7%BA%A6%E5%AE%9A">一些记号和约定</h2>
 <ul>
 <li>文章中的字符串下标从 $1$ 开始（代码中一般 index-0），$s_i,s[i]$ 表示字符串 $s$ 的第 $i$ 个字符，$|s|$ 表示 $s$ 的长度</li>
 <li>$&gt;$ 和 $&lt;$ 表示字典序的比较</li>
-<li>$\Sigma$ 表示字符集大小，$\Sigma^<em>$ 表示字符集为 $\Sigma$ 的字符串，$\Sigma^+ = \Sigma^</em> \setminus {\epsilon}$，即非空串集合。</li>
-<li>$\epsilon$ 表示空串，$$$ 表示特殊字符，且 $\forall c \in \Sigma, $ &gt; c$</li>
+<li>$\Sigma$ 表示字符集大小，$\Sigma^*$ 表示字符集为 $\Sigma$ 的字符串，$\Sigma^+ = \Sigma^* \setminus {\epsilon}$，即非空串集合。</li>
+<li>$\epsilon$ 表示空串，$\$$ 表示特殊字符，且 $\forall c \in \Sigma, \$ &gt; c$</li>
 <li>$\overline \Sigma = \Sigma \cup {$}$， $\overline{\Sigma^*}$ 表示字符集为 $\overline \Sigma$ 的字符串</li>
-<li>默认普通字符串中不包含特殊字符 $$$</li>
+<li>默认普通字符串中不包含特殊字符 $\$$</li>
 <li>$st, s+t$ 均表示字符串拼接</li>
 <li>$s^k$ 表示 $s$ 重复 $k$ 次得到的字符串，$s^\infty$ 表示 $s$ 重复无限次得到的字符串</li>
 <li>$s^R$ 表示 $s$ 翻转过后的字符串</li>
 <li>$s[i:j]$ 表示 $s$ 的第 $i$ 位到第 $j$ 位构成的子串，若 $i &gt; j$ 则为 $\epsilon$，$s[:i] = s[1:i], s[i:] = s[i:|s|]$</li>
-<li>$s \prec t \Leftrightarrow s + $ &lt; v, s \succ t \Leftrightarrow s &gt; t + $$</li>
+<li>$s \prec t \Leftrightarrow s + \$ &lt; v, s \succ t \Leftrightarrow s &gt; t + \$$</li>
 <li>$\operatorname{lcp}(s,t)$ 表示 $s$ 和 $t$ 的最长公共前缀</li>
-<li>$\operatorname{period}$：整数 $l$ 是 $s$ 的一个 $\operatorname{period}$ 当且仅当 $\forall i \in [1, |s| - l], s<em>i = s</em>{i+l}$</li>
-<li>$\operatorname{border}$：整数 $l$ 是 $s$ 的 $\operatorname{border}$ 当且仅当 $\forall i \in [1,l], s<em>i = s</em>{n - l + i}$</li>
+<li>$\operatorname{period}$：整数 $l$ 是 $s$ 的一个 $\operatorname{period}$ 当且仅当 $\forall i \in [1, |s| - l], s_i = s_{i+l}$</li>
+<li>$\operatorname{border}$：整数 $l$ 是 $s$ 的 $\operatorname{border}$ 当且仅当 $\forall i \in [1,l], s_i = s_{n - l + i}$</li>
 <li>整循环串：$s$ 是一个整循环串当且仅当 $\exists t \in \Sigma^*, s = t^k (k \geq 2)$</li>
 <li>循环串：$s$ 是一个循环串当且仅当 $\exists t \in \Sigma^*, s = t^k + t[:p]$， 其中 $k$ 是任意整数，$p&lt;|t|$</li>
 <li>最短循环节：长度最小的 $t$ 满足 $s = t^k (k \geq 2)$</li>
