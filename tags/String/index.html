@@ -1,26 +1,14 @@
+<html>
+
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
-  <link rel="stylesheet" type="text/css" href="/css/art.css">
   <link rel="icon" type="images/png" href="/images/favicon.png">
   <script src="/js/element.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
-  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
-  <title>
-      Codeforces 438E - Jacder's blog
-  </title>
+  <title> Tag String - Jacder's blog </title>
 </head>
 
 <body>
-  <script>
-    window.onload = function() {
-      loadMath();
-      drawSaying();
-      hljs.configure({ tabReplace: '  ' });
-      hljs.initHighlighting()
-    }
-  </script>
-
   <div class="content">
     <div class="sidebar" id="sidebar">
       <div class="sidebar-title">
@@ -41,13 +29,13 @@ Jacder's blog
         </li>
       </a>
       <a href="/articles">
-        <li class="list-item sidebar-menu-item" id="sidebar-content-articles"
-            style="background: #e5e5e5">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-articles">
           Articles
         </li>
       </a>
       <a href="/tags">
-        <li class="list-item sidebar-menu-item" id="sidebar-content-tags">
+        <li class="list-item sidebar-menu-item" id="sidebar-content-tags"
+            style="background: #e5e5e5">
           Tags
         </li>
       </a>
@@ -148,63 +136,24 @@ Jacder's blog
 </div>
 
     </div>
+    <div class="art-list-container">
+      <ul class="art-list">
 
-    <div class="post" id="post">
-
-      <h1 id="-cf438e-https-www-luogu-com-cn-problem-cf438e"><a href="https://www.luogu.com.cn/problem/CF438E">CF438E</a></h1>
-<h2 id="description">Description</h2>
-<p>We define a tree valid if and only if on each node there is a number in $S$, and the value of this true is define as the sum of these numbers.</p>
-<p>Given $n,m,S$, for each $k$ in $[1,m]$ find out the number of valid <strong>binary</strong> trees with $n$ nodes and value $k$.</p>
-<!--more-->
-<h2 id="tutorial">Tutorial</h2>
-<p>Define the OGF to the answer as $F$, and $G(x) = \sum_{k=0}^\infty [k \in S]x^k$.</p>
-<p>We know that a binary tree is defined as follow:</p>
-<ul>
-<li>An empty tree is a binary tree</li>
-<li>The combination of a root and two son binary trees(with order)</li>
-</ul>
-<p>The there is clear that</p>
-<script type="math/tex; mode=display">
-F(x) = 1 + G(x)F^2(x)</script><p>So</p>
-<script type="math/tex; mode=display">
-F(x) = \frac{2}{1 \pm \sqrt{1-4G(x)}}</script><p>As is obviously that </p>
-<script type="math/tex; mode=display">
-[x^0]F(x) = 1</script><p>We know the $\pm$ should be $+$</p>
-<h2 id="code">Code</h2>
-<p>ref: <a href="https://gitee.com/coderoj/cts/blob/master/tmp/CF438E/main.cpp">local</a>, <a href="https://codeforces.com/contest/438/submission/99882580">complete</a></p>
-<pre><code class="lang-cpp">#include &quot;~/code/Math/Poly/main.h&quot;
-
-void solve()
-{
-  using namespace Polys;
-  int n = sc.n(), m = sc.n();
-  Poly A(m+1);
-  rep (i,n) { 
-    int u = sc.n();
-    if (u &lt;= m) A[u] -= 4; }
-  A[0] = 1;
-  A = A.sqrt();
-  A[0] = 2;
-  A = A.inv();
-  A *= Int(2);
-  repa (i,m) printf(&quot;%u\n&quot;, static_cast&lt;unsigned&gt;(A[i]));
-}
-</code></pre>
-
-      <br>
-<HR class="hr-line">
-
-<div style="font-size: 12px; display: flex;">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-    <img alt="Creative Commons License" style="border-width:0" src="/images/cc-by-sa.png" />
-  </a>
-  <div style="margin-left: 10px;">
-    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-  </div>
-</div>
-
-
+<a href="/articles/Runs/">
+  <li class="list-item art-list-item" style="display: flex; justify-content: space-between;">
+    <div class="list-item-title" style="font-family: 'ZCOOL XiaoWei'; font-size: 22px;">
+      Runs 学习笔记
     </div>
+  </li>
+</a>
 
+      </ul>
+    </div>
   </div>
+
+  <script>
+    drawSaying()
+  </script>
 </body>
+
+</html>
